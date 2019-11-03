@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Test Documentation</title>
+        <style>
+            body {
+                text-rendering: optimizeLegibility;
+                font-variant-ligatures: common-ligatures;
+                font-kerning: normal;
+                margin-left: 2em;
+            }
+
+            body > ul > li {
+                font-family: Source Serif Pro, PT Sans, Trebuchet MS, Helvetica, Arial;
+                font-size: 2em;
+            }
+
+            h2 {
+                font-family: Tahoma, Helvetica, Arial;
+                font-size: 3em;
+            }
+
+            ul {
+                list-style: none;
+                margin-bottom: 1em;
+            }
+        </style>
+    </head>
+    <body>
+        <h2 id="Test\Chippyash\StateMachine\Events\EventableStateGraphTest">Chippyash\StateMachine\Events\EventableStateGraph</h2>
+        <ul>
+            <li style="color: #555753;">✓ A stategraph can listen for psr 14 events</li>
+            <li style="color: #555753;">✓ Errors from transitioning via an event will stop propagation for the event</li>
+            <li style="color: #555753;">✓ The listener only listens for transition events</li>
+            <li style="color: #555753;">✓ You can set a psr 14 event dispatcher on the stategraph</li>
+            <li style="color: #555753;">✓ The event listener will trigger transition events</li>
+            <li style="color: #555753;">✓ Pre transition events can stop a transition from occurring</li>
+        </ul>
+        <h2 id="Test\Chippyash\StateMachine\StateGraphTest">Chippyash\StateMachine\StateGraph</h2>
+        <ul>
+            <li style="color: #555753;">✓ You can retrieve a stategraph name and description</li>
+            <li style="color: #555753;">✓ A stategraph implements the describable interface</li>
+            <li style="color: #555753;">✓ You can create a stategraph</li>
+            <li style="color: #555753;">✓ Adding duplicate states will throw an exception</li>
+            <li style="color: #555753;">✓ Adding duplicate transitions will throw an exception</li>
+            <li style="color: #555753;">✓ Adding transitions for non existent from state will throw an exception</li>
+            <li style="color: #555753;">✓ Adding transitions for non existent to state will throw an exception</li>
+            <li style="color: #555753;">✓ You can retrieve possible transitions for a state</li>
+            <li style="color: #555753;">✓ You can test if state is an initial state</li>
+            <li style="color: #555753;">✓ You can test if state is a final state</li>
+            <li style="color: #555753;">✓ You can retrieve the initial states</li>
+            <li style="color: #555753;">✓ An exception willbe thrown if there are no initial states to be retrieved</li>
+            <li style="color: #555753;">✓ You can validate a stategraph</li>
+            <li style="color: #555753;">✓ A stategraph is invalid if it has no transitions</li>
+            <li style="color: #555753;">✓ A stategraph is invalid if it has no initial transition</li>
+            <li style="color: #555753;">✓ You can retrieve a clone of the composited graph object</li>
+            <li style="color: #555753;">✓ Adding a state with a description will add a label to the graph vertex</li>
+            <li style="color: #555753;">✓ Adding a transition with a description will add a label to the graph edge</li>
+            <li style="color: #555753;">✓ You can get the next state for a transition</li>
+            <li style="color: #555753;">✓ You can retrieve all transitions</li>
+            <li style="color: #555753;">✓ You can retrieve all states</li>
+            <li style="color: #555753;">✓ A state graph supports proxy method calls to the underlying graph object</li>
+            <li style="color: #555753;">✓ An exception is thrown for an unknown proxy method</li>
+            <li style="color: #555753;">✓ You can transition an object state with a stategraph</li>
+            <li style="color: #555753;">✓ You cannot transition an object from an unknown state</li>
+            <li style="color: #555753;">✓ You cannot transition an object with an unknown transition</li>
+            <li style="color: #555753;">✓ You cannot transition an object if the transition does not apply to the current object state</li>
+        </ul>
+    </body>
+</html>
