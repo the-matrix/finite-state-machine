@@ -1,0 +1,16 @@
+@startuml
+title Simple State machine
+
+[*] --> Initialise
+Initialise: Set counter = 3
+Initialise --> NotShooting: new game
+NotShooting --> Shooting: trigger pulled
+Shooting --> HitRecorded: target hit
+HitRecorded: counter ++
+Shooting --> MissRecorded: target missed
+MissRecorded: counter --
+HitRecorded --> Evaluate: scored
+MissRecorded --> Evaluate: scored
+Evaluate --> NotShooting: counter > 0
+Evaluate --> [*]: counter == 0
+@enduml

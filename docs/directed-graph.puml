@@ -1,0 +1,9 @@
+@startuml
+title Simple directed graph
+state A
+state B
+state C
+A --> B
+B --> C
+C --> A
+@enduml

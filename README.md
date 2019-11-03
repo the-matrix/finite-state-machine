@@ -22,18 +22,8 @@ A number of nodes (states), connected by edges (transitions) that can only
 go in one direction.  In graph theory, a directed graph doesn’t necessarily 
 have a start and end point.
 
-```puml
-@startuml
-title Simple directed graph
-state A
-state B
-state C
-A --> B
-B --> C
-C --> A
+![Simple Directed Graph](pics/directed-graph.png)
 
-@enduml
-```
 We can implement this theoretical graph using a [Finite State Machine](https://en.wikipedia.org/wiki/Finite-state_machine) (FSM).
 Another term for this is ‘[Deterministic Finite Automaton](https://en.wikipedia.org/wiki/Deterministic_finite_automaton)’.  An FSM always 
 has a start point or starting `state`, but may not have an end state, i.e. 
@@ -41,22 +31,7 @@ the state can be constantly in flux.  An object
 `transitions` from one state to another depending on the transitions 
 available to it and any conditions attached to the transition.
 A transition is initiated by an `event`.
-```puml
-title Simple State machine
-
-[*] --> Initialise
-Initialise: Set counter = 3
-Initialise --> NotShooting: new game
-NotShooting --> Shooting: trigger pulled
-Shooting --> HitRecorded: target hit
-HitRecorded: counter ++
-Shooting --> MissRecorded: target missed
-MissRecorded: counter --
-HitRecorded --> Evaluate: scored
-MissRecorded --> Evaluate: scored
-Evaluate --> NotShooting: counter > 0
-Evaluate --> [*]: counter == 0
-```
+![Simple state machine](pics/simple-state-machine.png)
 
 A thing or object that is being controlled by an FSM can only be in one 
 state at a time.  This is very different from a Multiple State Machine or 
@@ -107,115 +82,8 @@ This implementation provides:
 ## For development
 
 ### Requirements
-You will need Graphviz and PlantUml installed to view the following
-UML diagram. 
 
-```puml
-title Finite State Machine Classes
-namespace Chippyash\StateMachine {
-    interface "Interfaces\Describable" as Describable {
-        getName(): string
-        getDescription(): string
-    }
-    
-    interface "Interfaces\StateAware" as StateAware {
-        getState(): State
-        setState(State $state): StateAware
-        setPropagationStopped(bool $flag): StateGraphEvent
-        getEventType(): StateGraphEventType
-        setProcessMarker(bool $flag): StateGraphEvent
-        getProcessmarker(): bool
-    }
-    
-    interface "Interfaces\StateGraphEventable" as StateGraphEventable <? StoppableInterface>{
-        getStateGraphTransition(): Transition
-        getStateGraphObject(): StateAware
-    }
-
-    class "Traits\Describing" as Describing << (T, cyan)>>  {
-        #name: string
-        #description: string
-    }
-    Describable <|-- Describing
-    
-    class "Traits\StateGraphEventing" as StateGraphEventing << (T, cyan) >> {
-        #stateGraphtransition: Transition
-        #stateGraphobject: StateAware
-        #stateProcessmarker: bool = false
-        #propagationStopped: bool = false
-        #stateGraphEventType: StateGraphEventType
-    }
-    StateGraphEventable <|-- StateGraphEventing
-    class State <? Describable>{
-        __construct(string $name, ?string $description = '')
-    }
-    
-    class StateGraph <? Describable>{
-        #graph: Graphviz\Graph
-        #states: States
-        #transitions: Transitions
-        __construct(string $name, ?string $description = '')
-        addState(State $state): StateGraph
-        addTransition(State $from, State $to, Transition $transition): StateGraph
-        getTransitionsForState(StateAware $statefulObject): Transitions
-        isInitialState(State $state): bool
-        isFinalState(State $state): bool
-        getInitialStates(): States
-        getNextStateForTransition(Transition $transition): State
-        isValid(): bool
-        getGraph(): Graph
-        getTransitions(): Transitions
-        getStates(): States
-        transition(StateAware $object, Transition $transition): StateGraph
-        __call(string $method, array $arguments = [])
-    }
-    
-    class "Events\EventableStateGraph" as EventableStateGraph {
-        eventListener(StateGraphEventable $event): StateGraphEventable
-        setEventDispatcher(EventDispatcherInterface $dispatcher): StateGraph
-        
-    }
-    EventableStateGraph --|> StateGraph
-    EventableStateGraph *- StateGraphEvent
-    class States <<Monad\Map>> {
-    
-    }
-    State --o States
-    
-    class Transition <? Describable>{
-        __construct(string $name, ?string $description = '')
-    }
-    Transition -o Transitions
-    
-    Describing --* State
-    Describing --* Transition
-    Describing --* StateGraph
-
-    
-    class Transitions <<Monad\Map>> {
-    
-    }
-    
-    class "Events\StateGraphEvent" as StateGraphEvent {
-        __construct(Transition $transition, StateAware $object, ?StateGraphEventType $eventType = null)
-    }
-    StateGraphEventing --* StateGraphEvent
-    
-    enum "Events\StateGraphEventType" as StateGraphEventType {
-        DO_TRANSITION
-        START_TRANSITION
-        END_TRANSITION
-    }
-    StateGraphEventType --* StateGraphEventing
-    Transition --* StateGraphEventing
-    StateAware --* StateGraphEventing
-    Transition --* StateGraph
-    Transitions --* StateGraph
-    State --* StateGraph
-    States --* StateGraph
-
-}
-```
+![State Machine Classes](pics/state-machine-classes.png)
 ### Creating state graphs
 
 ```php
