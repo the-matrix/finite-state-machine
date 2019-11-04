@@ -6,6 +6,19 @@ you may not see them in Packagist. Please visit the github page for the full sto
 
 This library is still in dev mode.
 
+## Quality Assurance
+
+![PHP 7.2](https://img.shields.io/badge/PHP-7.2-blue.svg)
+[![Build Status](https://travis-ci.com/the-matrix/finite-state-machine.svg?branch=master)](https://travis-ci.com/the-matrix/finite-state-machine)
+[![Maintainability](https://api.codeclimate.com/v1/badges/c8c52409e08157d25ce8/maintainability)](https://codeclimate.com/github/the-matrix/finite-state-machine/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/c8c52409e08157d25ce8/test_coverage)](https://codeclimate.com/github/the-matrix/finite-state-machine/test_coverage)
+
+The above badges represent the current development branch. As a rule, 
+I don't push to GitHub unless tests, coverage and usability are acceptable. 
+This may not be true for short periods of time; on holiday, need code 
+for some other downstream project etc. If you need stable code, use a 
+tagged version.
+
 ## What
 
 Provides an Event aware Finite State Machine (FSM) implementation 
@@ -179,6 +192,22 @@ or logging changes etc.
 All `StateGraphEventable` compatible events get the Transition and the object
 being acted upon in the event message class.
 
+### Changing the library
+1. fork it
+1. write the test
+1. amend it
+1. do a pull request
+
+Found a bug you can't figure out?
+
+1. fork it
+1. write the test
+1. do a pull request
+
+NB. Make sure you rebase to HEAD before your pull request
+
+Or - raise an issue ticket.
+
 ## For production
 
 Any specific notes required to get this library into production
@@ -189,4 +218,12 @@ Any specific notes required to get this library into production
     - Json
     - Yaml
  
+## License
+
+This software library is released under the [BSD 3 Clause license](https://opensource.org/licenses/BSD-3-Clause)
+
+This software library is Copyright (c) 2018-2019, Ashley Kitson, UK
+
 ## History
+
+V0... pre release
