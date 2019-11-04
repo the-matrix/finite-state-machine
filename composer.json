@@ -2,9 +2,9 @@
   "name": "chippyash/finite-state-machine",
   "description": "A Finite State Machine Implementation",
   "keywords": [
-    "state machine", "workflow"
+    "state machine", "workflow", "directed graph"
   ],
-  "homepage": "https://github.com/chippyash/finite-state-machine",
+  "homepage": "https://github.com/the-matrix/finite-state-machine",
   "license": "BSD-3-Clause",
   "authors": [
     {

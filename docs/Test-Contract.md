@@ -22,7 +22,7 @@
 *  ✓ You can test if state is an initial state
 *  ✓ You can test if state is a final state
 *  ✓ You can retrieve the initial states
-*  ✓ An exception willbe thrown if there are no initial states to be retrieved
+*  ✓ An exception will be thrown if there are no initial states to be retrieved
 *  ✓ You can validate a stategraph
 *  ✓ A stategraph is invalid if it has no transitions
 *  ✓ A stategraph is invalid if it has no initial transition
@@ -32,7 +32,7 @@
 *  ✓ You can get the next state for a transition
 *  ✓ You can retrieve all transitions
 *  ✓ You can retrieve all states
-*  ✓ A state graph supports proxy method calls to the underlying graph object
+*  ✓ A stategraph supports proxy method calls to the underlying graph object
 *  ✓ An exception is thrown for an unknown proxy method
 *  ✓ You can transition an object state with a stategraph
 *  ✓ You cannot transition an object from an unknown state

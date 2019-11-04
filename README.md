@@ -99,6 +99,8 @@ This implementation provides:
 
 ## For development
 
+See the [Test Contract](docs/Test-Contract.md) 
+
 ### Installation
 
 `composer require chippyash/finite-state-machine`

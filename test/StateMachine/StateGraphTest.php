@@ -163,7 +163,7 @@ class StateGraphTest extends TestCase
         $this->assertEquals(['state1'], array_keys($this->sut->getInitialStates()->toArray()));
     }
 
-    public function testAnExceptionWillbeThrownIfThereAreNoInitialStatesToBeRetrieved()
+    public function testAnExceptionWillBeThrownIfThereAreNoInitialStatesToBeRetrieved()
     {
         $state1 = new State('state1');
         $state2 = new State('state2');
@@ -298,7 +298,7 @@ class StateGraphTest extends TestCase
 
     }
 
-    public function testAStateGraphSupportsProxyMethodCallsToTheUnderlyingGraphObject()
+    public function testAStategraphSupportsProxyMethodCallsToTheUnderlyingGraphObject()
     {
         $attributes = $this->sut->getAttributeBag();
         $this->assertInstanceOf(AttributeBag::class, $attributes);
