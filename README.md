@@ -4,6 +4,8 @@
 Due to the vagaries in which Github renders images that are in this readme,
 you may not see them in Packagist. Please visit the github page for the full story.
 
+This library is still in dev mode.
+
 ## What
 
 Provides an Event aware Finite State Machine (FSM) implementation 
@@ -84,10 +86,13 @@ This implementation provides:
 
 ## For development
 
-### Requirements
+### Installation
+
+`composer require chippyash/finite-state-machine`
+
+### Creating state graphs
 
 ![State Machine Classes](pics/state-machine-classes.png)
-### Creating state graphs
 
 ```php
 use Chippyash\StateMachine\StateGraph;
@@ -139,7 +144,9 @@ try {
 } catch (StateMachineException $e) {
     //process the error - see `Exceptions` directory
 }
+
 ```
+
 `transition()` will throw exceptions if the Transition doesn't exist in the
 graph or the object's current state doesn't exist etc.
 
