@@ -17,12 +17,12 @@ FSMs are the perfect tool for implementing workflow solutions.
 
 ## How
 
-Conceptually, a state machine is a form of [directed graph](https://en.wikipedia.org/wiki/Directed_graph)*[]: 
+Conceptually, a state machine is a form of [directed graph](https://en.wikipedia.org/wiki/Directed_graph): 
 A number of nodes (states), connected by edges (transitions) that can only
 go in one direction.  In graph theory, a directed graph doesn’t necessarily 
 have a start and end point.
 
-![Simple Directed Graph](pics/directed-graph.png)
+<img src="pics/directed-graph.png"></img>
 
 We can implement this theoretical graph using a [Finite State Machine](https://en.wikipedia.org/wiki/Finite-state_machine) (FSM).
 Another term for this is ‘[Deterministic Finite Automaton](https://en.wikipedia.org/wiki/Deterministic_finite_automaton)’.  An FSM always 
