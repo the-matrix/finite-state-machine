@@ -1,6 +1,9 @@
 # Finite State Machine
 ## chippyash/finite-state-machine
 
+Due to the vagaries in which Github renders images that are in this readme,
+you may not see them in Packagist. Please visit the github page for the full story.
+
 ## What
 
 Provides an Event aware Finite State Machine (FSM) implementation 
@@ -22,7 +25,7 @@ A number of nodes (states), connected by edges (transitions) that can only
 go in one direction.  In graph theory, a directed graph doesn’t necessarily 
 have a start and end point.
 
-<img src="pics/directed-graph.png"></img>
+![ A directed graph](pics/directed-graph.png)
 
 We can implement this theoretical graph using a [Finite State Machine](https://en.wikipedia.org/wiki/Finite-state_machine) (FSM).
 Another term for this is ‘[Deterministic Finite Automaton](https://en.wikipedia.org/wiki/Deterministic_finite_automaton)’.  An FSM always 
