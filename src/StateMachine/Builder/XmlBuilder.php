@@ -9,6 +9,7 @@
 namespace Chippyash\StateMachine\Builder;
 
 use Assembler\FFor;
+use Chippyash\StateMachine\Exceptions\InvalidGraphException;
 use Chippyash\StateMachine\Exceptions\InvalidStateMachineFileException;
 use Chippyash\StateMachine\Exceptions\StateMachineException;
 use Chippyash\StateMachine\Interfaces\StateMachineBuilder;
@@ -42,8 +43,32 @@ class XmlBuilder implements StateMachineBuilder
                 $dom = new \DOMDocument();
                 $dom->load($xmlFile);
                 $dom->preserveWhiteSpace = false;
-                if ($validate && !$dom->schemaValidate(__DIR__ . '/statemachine.xsd')) {
-                    throw new InvalidStateMachineFileException('XML is not valid');
+                if ($validate) {
+                    \libxml_use_internal_errors(true);
+                    if (!$dom->schemaValidate(__DIR__ . '/statemachine.xsd')) {
+                        $errors = implode(' : ', array_map(
+                            function($error) {
+                                $return = '';
+                                switch ($error->level) {
+                                    case LIBXML_ERR_WARNING:
+                                        $return .= "Warning $error->code: ";
+                                        break;
+                                    case LIBXML_ERR_ERROR:
+                                        $return .= "Error $error->code: ";
+                                        break;
+                                    case LIBXML_ERR_FATAL:
+                                        $return .= "Fatal Error $error->code: ";
+                                        break;
+                                }
+                                $return .= trim($error->message);
+                                return $return;
+                            },
+                            libxml_get_errors()
+                        ));
+                        \libxml_use_internal_errors(false);
+                        throw new InvalidStateMachineFileException('XML is not valid: ' . $errors);
+                    }
+                    \libxml_use_internal_errors(false);
                 }
                 return $dom;
             })
@@ -57,7 +82,10 @@ class XmlBuilder implements StateMachineBuilder
                 $states = [];
                 /** @var \DOMNode $node */
                 foreach($nodes as $node) {
-                    $states[] = new State($node->attributes->getNamedItem('name'), $node->attributes->getNamedItem('description'));
+                    $states[] = new State(
+                        $node->attributes->getNamedItem('name')->nodeValue,
+                        $node->attributes->getNamedItem('description')->nodeValue
+                    );
                 }
 
                 return new States($states);
@@ -69,11 +97,11 @@ class XmlBuilder implements StateMachineBuilder
                 /** @var \DOMNode $node */
                 foreach($nodes as $node) {
                     $transitions[] = (new Transition(
-                        $node->attributes->getNamedItem('name'),
-                        $node->attributes->getNamedItem('description')
+                        $node->attributes->getNamedItem('name')->nodeValue,
+                        $node->attributes->getNamedItem('description')->nodeValue
                     ))
-                        ->setFromStateName($node->attributes->getNamedItem('from'))
-                        ->setToStateName($node->attributes->getNamedItem('to'));
+                        ->setFromStateName($node->attributes->getNamedItem('from')->nodeValue)
+                        ->setToStateName($node->attributes->getNamedItem('to')->nodeValue);
                 }
 
                 return new Transitions($transitions);
@@ -82,8 +110,8 @@ class XmlBuilder implements StateMachineBuilder
             ->stateGraph(function(States $states, Transitions $transitions, \DOMXPath $xpath): StateGraph {
                 $node = $xpath->query('//graph')->item(0);
                 $stateGraph = new StateGraph(
-                    $node->attributes->getNamedItem('name'),
-                    $node->attributes->getNamedItem('description')
+                    $node->attributes->getNamedItem('name')->nodeValue,
+                    $node->attributes->getNamedItem('description')->nodeValue
                 );
                 try {
                     /** @var State $state */
@@ -97,6 +125,12 @@ class XmlBuilder implements StateMachineBuilder
                 try {
                     /** @var Transition $transition */
                     foreach ($transitions as $transition) {
+                        if (!array_key_exists($transition->getFromStateName(), $states)) {
+                            throw new InvalidGraphException("State: {$transition->getFromStateName()} does not exist in graph");
+                        }
+                        if (!array_key_exists($transition->getToStateName(), $states)) {
+                            throw new InvalidGraphException("State: {$transition->getToStateName()} does not exist in graph");
+                        }
                         $stateGraph->addTransition(
                             $states[$transition->getFromStateName()],
                             $states[$transition->getToStateName()],

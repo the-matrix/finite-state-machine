@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="graph" type="graphType"/>
+  <xs:complexType name="stateType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="name" use="required"/>
+        <xs:attribute type="xs:string" name="description" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="statesType">
+    <xs:sequence>
+      <xs:element type="stateType" name="state" maxOccurs="unbounded" minOccurs="2"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="transitionType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="name" use="required"/>
+        <xs:attribute type="xs:string" name="description" use="optional"/>
+        <xs:attribute type="xs:string" name="from" use="required"/>
+        <xs:attribute type="xs:string" name="to" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="transitionsType">
+    <xs:sequence>
+      <xs:element type="transitionType" name="transition" maxOccurs="unbounded" minOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="graphType">
+    <xs:sequence>
+      <xs:element type="statesType" name="states"/>
+      <xs:element type="transitionsType" name="transitions"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="name" use="required"/>
+    <xs:attribute type="xs:string" name="description" use="optional"/>
+  </xs:complexType>
+</xs:schema>

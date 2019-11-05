@@ -152,7 +152,7 @@ Call the `$graph->transition()` method.
 
 ```php
 $object = new MyStateAwareObject();
-$transition = new Transition('t1);
+$transition = new Transition('t1');
 
 try {
     $graph->transition($object, $transition);
@@ -195,6 +195,25 @@ or logging changes etc.
 All `StateGraphEventable` compatible events get the Transition and the object
 being acted upon in the event message class.
 
+### Building State Graphs
+#### XML
+```php
+use Chippyash\StateMachine\Builder\XmlBuilder;
+use Chippyash\StateMachine\Exceptions\InvalidStateMachineFileException;
+
+try {
+    $stateGraph = (new XmlBuilder())->build('path/to/graph.xml');
+} catch (InvalidStateMachineFileException $e) {
+    //process errors
+}
+```
+The build method takes a second parameter.  Set it true to validate the 
+source XML input.
+
+XSD for validation is at `src/StateMachine/Builder/statemachine.xsd`.
+
+Example XML file is at `docs/stategraph-example.xml`.
+ 
 ### Changing the library
 1. fork it
 1. write the test
@@ -217,7 +236,7 @@ Any specific notes required to get this library into production
 
 ## Roadmap
  - StateGraph persistence
-    - XML
+    - XML - DONE
     - Json
     - Yaml
  

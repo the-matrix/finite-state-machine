@@ -28,6 +28,18 @@
         </style>
     </head>
     <body>
+        <h2 id="Test\Chippyash\StateMachine\Builder\XmlBuilderTest">Chippyash\StateMachine\Builder\XmlBuilder</h2>
+        <ul>
+            <li style="color: #555753;">✓ You can build a stategraph from xml</li>
+            <li style="color: #555753;">✓ Exception is thrown if xml file does not exist</li>
+            <li style="color: #555753;">✓ You can optionally validate the xml input</li>
+            <li style="color: #555753;">✓ Validating invalid xml will throw an exception for missing graph name</li>
+            <li style="color: #555753;">✓ Validating invalid xml will throw an exception for missing state name</li>
+            <li style="color: #555753;">✓ Validating invalid xml will throw an exception for missing transition name</li>
+            <li style="color: #555753;">✓ Validating invalid xml will throw an exception for number of states less than two</li>
+            <li style="color: #555753;">✓ Validating invalid xml will throw an exception for number of transitions less than one</li>
+            <li style="color: #555753;">✓ Building the stategraph will throw an exception if graph is invalid</li>
+        </ul>
         <h2 id="Test\Chippyash\StateMachine\Events\EventableStateGraphTest">Chippyash\StateMachine\Events\EventableStateGraph</h2>
         <ul>
             <li style="color: #555753;">✓ A stategraph can listen for psr 14 events</li>
@@ -50,7 +62,7 @@
             <li style="color: #555753;">✓ You can test if state is an initial state</li>
             <li style="color: #555753;">✓ You can test if state is a final state</li>
             <li style="color: #555753;">✓ You can retrieve the initial states</li>
-            <li style="color: #555753;">✓ An exception willbe thrown if there are no initial states to be retrieved</li>
+            <li style="color: #555753;">✓ An exception will be thrown if there are no initial states to be retrieved</li>
             <li style="color: #555753;">✓ You can validate a stategraph</li>
             <li style="color: #555753;">✓ A stategraph is invalid if it has no transitions</li>
             <li style="color: #555753;">✓ A stategraph is invalid if it has no initial transition</li>
@@ -60,7 +72,7 @@
             <li style="color: #555753;">✓ You can get the next state for a transition</li>
             <li style="color: #555753;">✓ You can retrieve all transitions</li>
             <li style="color: #555753;">✓ You can retrieve all states</li>
-            <li style="color: #555753;">✓ A state graph supports proxy method calls to the underlying graph object</li>
+            <li style="color: #555753;">✓ A stategraph supports proxy method calls to the underlying graph object</li>
             <li style="color: #555753;">✓ An exception is thrown for an unknown proxy method</li>
             <li style="color: #555753;">✓ You can transition an object state with a stategraph</li>
             <li style="color: #555753;">✓ You cannot transition an object from an unknown state</li>

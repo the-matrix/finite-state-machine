@@ -1,5 +1,17 @@
 # Chippyash Finite State Machine
 
+## Chippyash\StateMachine\Builder\XmlBuilder
+
+*  ✓ You can build a stategraph from xml
+*  ✓ Exception is thrown if xml file does not exist
+*  ✓ You can optionally validate the xml input
+*  ✓ Validating invalid xml will throw an exception for missing graph name
+*  ✓ Validating invalid xml will throw an exception for missing state name
+*  ✓ Validating invalid xml will throw an exception for missing transition name
+*  ✓ Validating invalid xml will throw an exception for number of states less than two
+*  ✓ Validating invalid xml will throw an exception for number of transitions less than one
+*  ✓ Building the stategraph will throw an exception if graph is invalid
+
 ## Chippyash\StateMachine\Events\EventableStateGraph
 
 *  ✓ A stategraph can listen for psr 14 events
