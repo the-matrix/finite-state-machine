@@ -108,7 +108,7 @@ See the [Test Contract](docs/Test-Contract.md)
 ### Creating state graphs
 
 ![State Machine Classes](pics/state-machine-classes.png)
-
+ 
 ```php
 use Chippyash\StateMachine\StateGraph;
 
@@ -170,6 +170,7 @@ The `StateMachine\Events\EventableStateGraph` class extends `StateGraph`
 to provide methods for latching a Stategraph into a PSR-14 compliant
 Event Manager.
 
+![Eventable State Graph](pics/eventable-state-machine-classes.png)
 ```php
 use Chippyash\StateMachine\Events\EventableStateGraph;
 

@@ -1,4 +1,5 @@
 @startuml
+hide empty members
 title Finite State Machine Classes
 namespace Chippyash\StateMachine {
     interface "Interfaces\Describable" as Describable {
@@ -9,15 +10,6 @@ namespace Chippyash\StateMachine {
     interface "Interfaces\StateAware" as StateAware {
         getState(): State
         setState(State $state): StateAware
-        setPropagationStopped(bool $flag): StateGraphEvent
-        getEventType(): StateGraphEventType
-        setProcessMarker(bool $flag): StateGraphEvent
-        getProcessmarker(): bool
-    }
-
-    interface "Interfaces\StateGraphEventable" as StateGraphEventable <? StoppableInterface>{
-        getStateGraphTransition(): Transition
-        getStateGraphObject(): StateAware
     }
 
     class "Traits\Describing" as Describing << (T, cyan)>>  {
@@ -26,14 +18,6 @@ namespace Chippyash\StateMachine {
     }
     Describable <|-- Describing
 
-    class "Traits\StateGraphEventing" as StateGraphEventing << (T, cyan) >> {
-        #stateGraphtransition: Transition
-        #stateGraphobject: StateAware
-        #stateProcessmarker: bool = false
-        #propagationStopped: bool = false
-        #stateGraphEventType: StateGraphEventType
-    }
-    StateGraphEventable <|-- StateGraphEventing
     class State <? Describable>{
         __construct(string $name, ?string $description = '')
     }
@@ -58,45 +42,31 @@ namespace Chippyash\StateMachine {
         __call(string $method, array $arguments = [])
     }
 
-    class "Events\EventableStateGraph" as EventableStateGraph {
-        eventListener(StateGraphEventable $event): StateGraphEventable
-        setEventDispatcher(EventDispatcherInterface $dispatcher): StateGraph
-
-    }
-    EventableStateGraph --|> StateGraph
-    EventableStateGraph *- StateGraphEvent
     class States <<Monad\Map>> {
 
     }
     State --o States
 
     class Transition <? Describable>{
+    	#fromStateName: string
+    	#toStateName: string
         __construct(string $name, ?string $description = '')
+        getFromStateName(): string
+        getToStateName(): string
+        setFromStateName(string $fromStateName): Transition
+        setToStateName(string $toStateName): Transition
     }
     Transition -o Transitions
 
-    Describing --* State
-    Describing --* Transition
-    Describing --* StateGraph
-
+    Describing <|-- State
+    Describing <|-- Transition
+    Describing <|-- StateGraph
 
     class Transitions <<Monad\Map>> {
 
     }
 
-    class "Events\StateGraphEvent" as StateGraphEvent {
-        __construct(Transition $transition, StateAware $object, ?StateGraphEventType $eventType = null)
-    }
-    StateGraphEventing --* StateGraphEvent
-
-    enum "Events\StateGraphEventType" as StateGraphEventType {
-        DO_TRANSITION
-        START_TRANSITION
-        END_TRANSITION
-    }
-    StateGraphEventType --* StateGraphEventing
-    Transition --* StateGraphEventing
-    StateAware --* StateGraphEventing
+	StateAware -* StateGraph
     Transition --* StateGraph
     Transitions --* StateGraph
     State --* StateGraph

@@ -17,12 +17,17 @@
     "graphp/graphviz": "~0.2",
     "chippyash/monad": "~2.1",
     "psr/event-dispatcher": "^1.0",
-    "myclabs/php-enum": "^1.7"
+    "myclabs/php-enum": "^1.7",
+    "chippyash/assembly-builder": "^2.1"
   },
   "require-dev": {
+    "ext-dom": "*",
     "phpunit/phpunit": "~6.5",
     "mikey179/vfsstream": "~1.6",
     "chippyash/testdox-converter": "^1.0"
+  },
+  "suggest": {
+    "ext-dom": "To build StateGraphs from an XML Definition file"
   },
   "autoload": {
     "psr-4": {

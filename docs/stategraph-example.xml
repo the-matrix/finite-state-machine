@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<graph name="test" description="test xml stategraph">
+    <states>
+        <state name="start" description="Starting State"></state>
+        <state name="build" description="Build state"></state>
+        <state name="compile" description=""></state>
+        <state name="done" description="Finished"></state>
+    </states>
+    <transitions>
+        <transition name="building" description="beginning build" from="start" to="build"></transition>
+        <transition name="built" description="artifact is built" from="build" to="compile"></transition>
+        <transition name="compiled" description="artifact compiled" from="compile" to="done"></transition>
+        <transition name="failedbuild" description="failed the build" from="build" to="start"></transition>
+    </transitions>
+</graph>

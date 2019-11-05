@@ -1,0 +1,50 @@
+@startuml
+hide empty members
+title PSR14 Eventable State Machine Classes
+namespace Chippyash\StateMachine {
+    interface "Interfaces\StateAware" as StateAware
+
+    interface "Interfaces\StateGraphEventable" as StateGraphEventable <? StoppableInterface>{
+        getStateGraphTransition(): Transition
+        getStateGraphObject(): StateAware
+        setPropagationStopped(bool $flag): StateGraphEvent
+        getEventType(): StateGraphEventType
+        setProcessMarker(bool $flag): StateGraphEvent
+        getProcessmarker(): bool
+    }
+
+    class "Traits\StateGraphEventing" as StateGraphEventing << (T, cyan) >> {
+        #stateGraphtransition: Transition
+        #stateGraphobject: StateAware
+        #stateProcessmarker: bool = false
+        #propagationStopped: bool = false
+        #stateGraphEventType: StateGraphEventType
+    }
+    StateGraphEventable <|-- StateGraphEventing
+
+    class StateGraph <? Describable>
+
+    class "Events\EventableStateGraph" as EventableStateGraph #cyan {
+        eventListener(StateGraphEventable $event): StateGraphEventable
+        setEventDispatcher(EventDispatcherInterface $dispatcher): StateGraph
+    }
+
+    StateGraph <|-- EventableStateGraph
+    EventableStateGraph *-- StateGraphEventable
+
+
+    class "Events\StateGraphEvent" as StateGraphEvent {
+        __construct(Transition $transition, StateAware $object, ?StateGraphEventType $eventType = null)
+    }
+    StateGraphEventing --* StateGraphEvent
+
+    enum "Events\StateGraphEventType" as StateGraphEventType {
+        DO_TRANSITION
+        START_TRANSITION
+        END_TRANSITION
+    }
+    StateGraphEventType --* StateGraphEventing
+    Transition --* StateGraphEventing
+    StateAware --* StateGraphEventing
+}
+@enduml
