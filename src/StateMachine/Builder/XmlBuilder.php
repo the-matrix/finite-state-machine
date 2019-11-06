@@ -63,7 +63,7 @@ class XmlBuilder implements StateMachineBuilder
                                 $return .= trim($error->message);
                                 return $return;
                             },
-                            libxml_get_errors()
+                            \libxml_get_errors()
                         ));
                         \libxml_use_internal_errors(false);
                         throw new InvalidStateMachineFileException('XML is not valid: ' . $errors);
