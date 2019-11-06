@@ -12,6 +12,11 @@ namespace Chippyash\StateMachine {
         setState(State $state): StateAware
     }
 
+	class "Traits\HasState" as HasState << (T, cyan) >> {
+		#state: State
+	}
+	StateAware <|-- HasState
+
     class "Traits\Describing" as Describing << (T, cyan)>>  {
         #name: string
         #description: string
