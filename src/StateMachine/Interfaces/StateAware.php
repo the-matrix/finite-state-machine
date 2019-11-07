@@ -8,6 +8,7 @@
  */
 namespace Chippyash\StateMachine\Interfaces;
 
+use Chippyash\StateMachine\Exceptions\InvalidStateException;
 use Chippyash\StateMachine\State;
 
 /**
@@ -18,7 +19,11 @@ interface StateAware
     /**
      * Get Object State
      *
+     * Exception thrown if no state is set
+     *
      * @return string
+     *
+     * @throws InvalidStateException
      */
     public function getState(): State;
 

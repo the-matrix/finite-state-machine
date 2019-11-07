@@ -8,6 +8,7 @@
  */
 namespace Chippyash\StateMachine\Traits;
 
+use Chippyash\StateMachine\Exceptions\InvalidStateException;
 use Chippyash\StateMachine\Interfaces\StateAware;
 use Chippyash\StateMachine\State;
 
@@ -23,6 +24,9 @@ trait HasState
 
     public function getState(): State
     {
+        if (empty($this->state)) {
+            throw new InvalidStateException('Object has no state');
+        }
         return $this->state;
     }
 

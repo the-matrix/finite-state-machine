@@ -142,7 +142,9 @@ call to the underlying Graph object via the __call() method
 ### Creating objects that can move through state
 
 Any class can be used in a State Machine.  Simply implement the StateAware
-interface in your class.
+interface in your class. You can use the HasState trait to do this simply.
+Please note that `HasState::getState()` will throw an exception of the
+object has no state. 
 
 The State Machine is **NOT** responsible for saving that state to storage.  
 That is the concern of the object.  
