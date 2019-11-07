@@ -191,6 +191,8 @@ or logging changes etc.
 All `StateGraphEventable` compatible events get the Transition and the object
 being acted upon in the event message class.
 
+You can find example code for event driven State machines at [https://github.com/the-matrix/the-coffee-machine](https://github.com/the-matrix/the-coffee-machine)
+
 ### Building State Graphs
 #### XML
 ```php
