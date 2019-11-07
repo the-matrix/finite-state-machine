@@ -35,4 +35,11 @@ interface StateAware
      * @return Stateful
      */
     public function setState(State $state): StateAware;
+
+    /**
+     * Does object have a state?
+     *
+     * @return bool
+     */
+    public function hasState(): bool;
 }

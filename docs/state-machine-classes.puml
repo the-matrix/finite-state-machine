@@ -10,6 +10,7 @@ namespace Chippyash\StateMachine {
     interface "Interfaces\StateAware" as StateAware {
         getState(): State
         setState(State $state): StateAware
+        hasState(): bool
     }
 
 	class "Traits\HasState" as HasState << (T, cyan) >> {

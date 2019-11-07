@@ -24,9 +24,6 @@ trait HasState
 
     public function getState(): State
     {
-        if (empty($this->state)) {
-            throw new InvalidStateException('Object has no state');
-        }
         return $this->state;
     }
 
@@ -35,4 +32,10 @@ trait HasState
         $this->state = $state;
         return $this;
     }
+
+    public function hasState(): bool
+    {
+        return !empty($this->state);
+    }
+
 }
