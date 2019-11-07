@@ -1,11 +1,6 @@
 # Finite State Machine
 ## chippyash/finite-state-machine
 
-Due to the vagaries in which Github renders images that are in this readme,
-you may not see them in Packagist. Please visit the github page for the full story.
-
-This library is still in dev mode.
-
 ## Quality Assurance
 
 ![PHP 7.2](https://img.shields.io/badge/PHP-7.2-blue.svg)
@@ -250,3 +245,5 @@ This software library is Copyright (c) 2018-2019, Ashley Kitson, UK
 ## History
 
 V0... pre release
+
+V1.0.0 Initial release
